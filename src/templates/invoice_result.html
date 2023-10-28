@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>نتیجه</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <header>
+        <div class="my-2">
+            <nav class="navbar navbar-expand-lg fixed-top sticky-top">
+                <div class="container">
+                    <a class="navbar-brand mx-auto btn btn-primary text-white" href="{{request.url}}">بازگشت به لیست صورتحساب ها</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <table dir="rtl" class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>صورتحساب</th>
+                                    <th>نتیجه استعلام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in result %}
+                                <tr class="
+                                {% if i.code == 1 %}table-success{% endif %}
+                                {% if i.code == 2 %}table-info{% endif %}
+                                {% if i.code == 3 %}table-warning{% endif %}
+                                {% if i.code == 4 %}table-danger{% endif %}
+                                ">
+                                    <td>{{i.invoice}}</td>
+                                    <td>{{i.result}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+
+</html>
