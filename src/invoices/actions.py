@@ -49,6 +49,7 @@ def send_invoices(modeladmin, request, queryset):
                     _ = model_to_dict(payment)
                     _.pop('id')
                     _.pop('invoice')
+                    _['pdt'] = int(_['pdt'].timestamp() * 1000)
                     payments.append(_)
                 invoice = {**{"header": header}, **
                            {"body": bodies}, **{"payments": payments}}
