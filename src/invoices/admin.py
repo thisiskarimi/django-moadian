@@ -62,7 +62,9 @@ class InvoicePaymentAdminInline(StackedInline):
     extra = 1
     model = InvoicePayment
     fields = [("iinn", "acn"), ("trmn", "trn"), ("pid", "pcn"), ("pdt")]
-
+    formfield_overrides = {
+        models.DateTimeField: {"widget": AdminSplitJalaliDateTime},
+    }
 
 @admin.register(Invoice)
 class InvoiceModelAdmin(admin.ModelAdmin):
